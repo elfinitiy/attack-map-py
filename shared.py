@@ -24,13 +24,15 @@ def extract_re(data: list, pattern: re, group=0):
 
 
 re_good_request = re.compile(".*\"(GET|HEAD) /(robots\.txt|.*\.(png|css|js|ico))?.*\"")
-#re_bad_request = re.compile(".*(GET|POST|HEAD|PUT|CONNECT) /(.*) HTTP.*")
 
-file = open("access.log", "r")
-access_logs_list = file.read().split("\n")
-file.close()
-
-#bad_request_list = extract_re(filtered_requests, re_bad_request, 2)
-
+access_logs_list = []
 filtered_requests = filter_out(access_logs_list, re_good_request, True)
 
+
+def initialize_log_file(path):
+    global access_logs_list, filtered_requests
+    file = open(path, "r")
+    access_logs_list = file.read().split("\n")
+    file.close()
+
+    filtered_requests = filter_out(access_logs_list, re_good_request, True)

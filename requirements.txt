@@ -1,0 +1,5 @@
+matplotlib==2.2.2
+geoip2==2.8.0
+pycountry==18.5.20
+geopandas==0.3.0
+pandas==0.23.0
